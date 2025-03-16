@@ -1,0 +1,9 @@
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+signing {
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+}

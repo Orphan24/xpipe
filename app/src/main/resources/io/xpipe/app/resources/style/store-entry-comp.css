@@ -1,0 +1,219 @@
+.store-list-comp.scroll-pane * {
+    -fx-icon-color: -color-fg-default;
+}
+
+.store-list-comp.scroll-pane > .viewport .list-box-content {
+    -fx-spacing: 4;
+    -fx-padding: 4 0 4 0;
+}
+
+.store-list-comp.scroll-pane  {
+    -fx-padding: 0 0 0 2;
+}
+
+.store-list-comp.scroll-pane .scroll-bar:vertical {
+    -fx-padding: 9 1 5 1;
+    -fx-min-width: 6px;
+    -fx-pref-width: 6px;
+    -fx-max-width: 6px;
+}
+
+/* Grid */
+
+.store-entry-grid .date, .store-entry-grid .summary {
+    -fx-text-fill: -color-fg-muted;
+}
+
+.root:dark .store-entry-grid:incomplete .name, .root:dark .store-entry-grid:failed .name {
+    -fx-text-fill: #aa473c;
+}
+
+.root:light .store-entry-grid:incomplete .name, .root:light .store-entry-grid:failed .name {
+    -fx-text-fill: #88352b;
+}
+
+.store-entry-grid .user-icon .ikonli-font-icon {
+    -fx-icon-color: #5b2cffff;
+}
+
+.store-entry-grid:incomplete .icon {
+    -fx-opacity: 0.5;
+}
+
+.store-entry-grid .icon > .background {
+    -fx-background-radius: 5px;
+    -fx-background-color: -color-bg-overlay;
+    -fx-opacity: 0.5;
+}
+
+.store-entry-grid .icon:hover {
+    -fx-background-color: -color-bg-inset;
+    -fx-background-radius: 5px;
+}
+
+.root.nord .store-entry-grid .icon {
+    -fx-background-radius: 3;
+}
+
+.store-entry-grid {
+    -fx-padding: 0.15em 6px 0.15em 6px;
+}
+
+.store-entry-grid.dense {
+    -fx-padding: 0px 6px 0px 6px;
+}
+
+/* Entry */
+
+.store-entry-comp {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+}
+
+.root.nord .store-entry-comp {
+    -fx-background-radius: 0;
+}
+
+.store-entry-comp:hover:armed {
+    -fx-background-color: derive(-color-neutral-muted, 25%);
+}
+
+.store-entry-comp:hover, .root:key-navigation .store-entry-comp:focused {
+    -fx-background-color: -color-neutral-muted;
+}
+
+.store-entry-comp .button-bar, .store-entry-comp .dropdown-comp, .store-entry-comp .toggle-switch-comp {
+    -fx-opacity: 0.65;
+}
+
+.store-entry-comp:hover .button-bar, .store-entry-comp:hover .dropdown-comp, .store-entry-comp:hover .toggle-switch-comp {
+    -fx-opacity: 1.0;
+}
+
+.notes-button:hover, .root:key-navigation .notes-button:focused, .expand-button:hover, .root:key-navigation .expand-button:focused, .quick-access-button:hover, .root:key-navigation .quick-access-button:focused {
+    -fx-background-color: -color-neutral-muted;
+}
+
+.expand-button:disabled, .quick-access-button:disabled {
+    -fx-opacity: 0.2;
+}
+
+.store-entry-comp .button-bar {
+    -fx-padding: 5;
+}
+
+.store-entry-grid.dense .button-bar {
+    -fx-padding: 2;
+}
+
+.store-entry-comp .button-bar .button {
+    -fx-padding: 6px;
+}
+
+/* Section */
+
+.store-entry-section-comp > .separator {
+    -fx-padding: 0 12px 0 35px;
+    -fx-border-insets: 0px;
+}
+
+.store-entry-section-comp > .children-content {
+    -fx-padding: 5px 0 0 25px;
+}
+
+.store-entry-section-comp > .separator .line {
+    -fx-padding: 0;
+    -fx-border-insets: 0px;
+    -fx-background-color: -color-border-subtle;
+    -fx-pref-height: 1;
+}
+
+.root:pretty .top > .store-entry-section-comp {
+    -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 2, 0.5, 0, 1);
+}
+
+.store-entry-section-comp:top {
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+}
+
+.store-entry-section-comp:sub:expanded {
+    -fx-border-radius: 4 0 0 4;
+    -fx-border-width: 1 0 1 1;
+    -fx-background-radius: 4 0 0 4;
+}
+
+.store-entry-section-comp:last:sub:expanded {
+    -fx-border-width: 1 0 0 1;
+    -fx-background-radius: 4 0 0 0;
+    -fx-border-radius: 4 0 0 0;
+}
+
+.store-entry-section-comp:last:sub {
+    -fx-padding: 0 0 3 0;
+}
+
+.store-entry-section-comp:last:sub:expanded {
+    -fx-padding: 0;
+}
+
+.root.nord .store-entry-section-comp {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.store-entry-section-comp .list-box-view-comp .list-box-content {
+    -fx-spacing: 0.2em;
+}
+
+.root .store-entry-section-comp.color-box.vertical-comp:per-user {
+    -fx-border-color: #5b2cffcc;
+}
+
+/* Light sub backgrounds */
+
+.root:light .store-entry-section-comp:sub:expanded {
+    -fx-border-color: #9999;
+}
+
+.root:light .store-entry-section-comp.none .store-entry-section-comp:expanded:even-depth {
+    -fx-background-color: derive(-color-bg-default, -3%);
+}
+
+.root:light .store-entry-section-comp.none .store-entry-section-comp:expanded:odd-depth {
+    -fx-background-color: -color-bg-default;
+}
+
+.root:light .store-entry-section-comp:sub:expanded:even-depth {
+    -fx-background-color: #ddd5;
+}
+
+.root:light .store-entry-section-comp:sub:expanded:odd-depth {
+    -fx-background-color: #aaa3;
+}
+
+/* Dark sub backgrounds */
+
+.root:dark .store-entry-section-comp:sub:expanded {
+    -fx-border-color: #4449;
+}
+
+.root:dark .store-entry-section-comp.none .store-entry-section-comp:expanded:even-depth {
+    -fx-background-color: derive(-color-bg-default, 5%);
+}
+
+.root:dark .store-entry-section-comp.none .store-entry-section-comp:expanded:odd-depth {
+    -fx-background-color: -color-bg-default;
+}
+
+.root:dark .store-entry-section-comp:sub:expanded:even-depth {
+    -fx-background-color: #1114;
+}
+
+.root:dark .store-entry-section-comp:sub:expanded:odd-depth {
+    -fx-background-color: #2224;
+}
+
+
+

@@ -1,0 +1,149 @@
+
+.store-header-bar {
+    -fx-padding: 0.8em 1.0em 0.8em 1.0em;
+}
+
+.bar {
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-border-width: 1;
+    -fx-border-color: -color-border-default;
+    -fx-background-color: -color-bg-subtle;
+}
+
+.store-header-bar {
+    -fx-spacing: 0.45em;
+}
+
+.root.nord .store-header-bar {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.root.nord .bar {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.bar .filter-bar .text-field {
+    -fx-padding: 0.35em;
+    -fx-text-fill: -color-fg-default;
+}
+
+.store-header-bar .menu-button {
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-width: 1px;
+    -fx-background-color: linear-gradient(from 100% 0% to 0% 100%, rgb(208, 220, 252) 40%, rgba(219, 219, 255, 1) 50%, rgb(250, 242, 242) 100%);
+    -fx-border-color: transparent;
+}
+
+.root.nord .store-header-bar .menu-button {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.root:light .store-header-bar .menu-button {
+    -fx-background-color: linear-gradient(from 100% 0% to 0% 100%, rgb(12, 11, 11) 40%, rgb(32, 32, 40) 50%, rgb(35, 29, 29) 100%);
+}
+
+.store-header-bar .menu-button > * {
+    -fx-text-fill: -color-bg-default;
+}
+
+.store-header-bar .menu-button > * > .ikonli-font-icon {
+    -fx-icon-color: -color-bg-default;
+}
+
+.store-header-bar .menu-button .arrow {
+    -fx-border-color: -color-bg-default;
+    -fx-border-width: 4;
+}
+
+.root .store-header-bar .menu-button:hover, .root:key-navigation .store-header-bar .menu-button:focused {
+    -fx-background-color: -color-bg-default;
+    -fx-border-color: -color-fg-default;
+}
+
+.root .store-header-bar .menu-button:hover > *, .root:key-navigation .store-header-bar .menu-button:focused > * {
+    -fx-text-fill: -color-fg-default;
+}
+
+.root .store-header-bar .menu-button:hover > * > .ikonli-font-icon, .root:key-navigation .store-header-bar .menu-button:focused > * > .ikonli-font-icon {
+    -fx-icon-color: -color-fg-default;
+}
+
+.root .store-header-bar .menu-button:hover .arrow, .root:key-navigation .store-header-bar .menu-button:focused .arrow {
+    -fx-border-color: -color-fg-default;
+    -fx-border-width: 4;
+}
+
+.store-creation-bar, .store-sort-bar, .store-category-bar {
+    -fx-spacing: 0.2em;
+}
+
+.root.nord .store-creation-bar, .root.nord .store-sort-bar, .root.nord .store-category-bar {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.store-category-bar > .viewport > .view > .scroll-comp-content {
+    -fx-padding: 0.5em 0.1em 0.2em 0.5em;
+}
+
+.store-category-bar * {
+    -fx-icon-color: -color-fg-default;
+}
+
+.store-sort-bar {
+    -fx-spacing: 0.2em;
+}
+
+.filler-bar {
+}
+
+.sidebar {
+    -fx-padding: 4 0 4 4;
+    -fx-spacing: 4;
+    -fx-background-color: transparent;
+}
+
+.store-header-bar .button-comp {
+    -fx-padding: 0.2em 0em 0.2em 0em;
+}
+
+.store-header-bar .icon-button-comp {
+    -fx-text-fill: -color-fg-default;
+}
+
+.store-header-bar .name {
+    -fx-font-weight: BOLD;
+    -fx-text-fill: -color-fg-default;
+}
+
+.store-header-bar .count-comp {
+    -fx-font-weight: BOLD;
+    -fx-padding: 0.0em 0em 0.0em 0.4em;
+    -fx-text-fill: -color-fg-muted;
+}
+
+.store-header-bar .filter-bar .text-field {
+    -fx-text-fill: -color-fg-default;
+}
+
+.store-header-bar .filter-bar .ikonli-font-icon {
+    -fx-icon-color: -color-fg-default;
+}
+
+.store-header-bar .filter-bar {
+    -fx-background-radius: 3px;
+    -fx-background-color: -color-bg-default;
+    -fx-border-color: -color-fg-muted;
+    -fx-border-width: 1;
+    -fx-border-radius: 3px;
+}
+
+.root.nord .store-header-bar .filter-bar {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}

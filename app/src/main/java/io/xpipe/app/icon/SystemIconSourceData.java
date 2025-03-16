@@ -1,0 +1,86 @@
+package io.xpipe.app.icon;
+
+import io.xpipe.app.issue.ErrorEvent;
+
+import lombok.Value;
+import org.apache.commons.io.FilenameUtils;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
+@Value
+public class SystemIconSourceData {
+
+    Path directory;
+    List<SystemIconSourceFile> icons;
+
+    public static SystemIconSourceData of(SystemIconSource source) {
+        var target = source.getPath();
+        var list = new ArrayList<SystemIconSourceFile>();
+        walkTree(source, target, list);
+        return new SystemIconSourceData(target, list);
+    }
+
+    private static void walkTree(SystemIconSource source, Path dir, List<SystemIconSourceFile> sourceFiles) {
+        try {
+            if (!Files.isDirectory(dir)) {
+                return;
+            }
+
+            var files = Files.walk(dir).toList();
+            List<Path> flatFiles = files.stream()
+                    .filter(path -> Files.isRegularFile(path))
+                    .filter(path -> path.toString().endsWith(".svg"))
+                    .map(path -> {
+                var name = FilenameUtils.getBaseName(path.getFileName().toString());
+                var cleanedName = name.replaceFirst("-light$", "").replaceFirst("-dark$", "");
+                var cleanedPath = path.getParent().resolve(cleanedName + ".svg");
+                return cleanedPath;
+            }).toList();
+            for (var file : flatFiles) {
+                var name = FilenameUtils.getBaseName(file.getFileName().toString());
+                var displayName = name.toLowerCase(Locale.ROOT);
+                var baseFile = file.getParent().resolve(name + ".svg");
+                var hasBaseVariant = Files.exists(baseFile);
+                var darkModeFile = file.getParent().resolve(name + "-light.svg");
+                var hasDarkModeVariant = Files.exists(darkModeFile);
+                var lightModeFile = file.getParent().resolve(name + "-dark.svg");
+                var hasLightModeVariant = Files.exists(lightModeFile);
+
+                if (hasBaseVariant && hasDarkModeVariant) {
+                    sourceFiles.add(new SystemIconSourceFile(source, displayName, baseFile, SystemIconSourceFile.ColorSchemeData.DEFAULT));
+                    sourceFiles.add(new SystemIconSourceFile(source, displayName, darkModeFile, SystemIconSourceFile.ColorSchemeData.DARK));
+                    continue;
+                }
+
+                if (hasBaseVariant && hasLightModeVariant) {
+                    sourceFiles.add(new SystemIconSourceFile(source, displayName, baseFile, SystemIconSourceFile.ColorSchemeData.DARK));
+                    sourceFiles.add(new SystemIconSourceFile(source, displayName, lightModeFile, SystemIconSourceFile.ColorSchemeData.DEFAULT));
+                    continue;
+                }
+
+                if (!hasBaseVariant) {
+                    if (hasLightModeVariant) {
+                        sourceFiles.add(new SystemIconSourceFile(source, displayName, lightModeFile, SystemIconSourceFile.ColorSchemeData.DEFAULT));
+                        if (hasDarkModeVariant) {
+                            sourceFiles.add(new SystemIconSourceFile(source, displayName, darkModeFile, SystemIconSourceFile.ColorSchemeData.DARK));
+                        }
+                    } else {
+                        if (hasDarkModeVariant) {
+                            sourceFiles.add(
+                                    new SystemIconSourceFile(source, displayName, darkModeFile, SystemIconSourceFile.ColorSchemeData.DEFAULT));
+                        }
+                    }
+                    continue;
+                }
+
+                sourceFiles.add(new SystemIconSourceFile(source, displayName, baseFile, SystemIconSourceFile.ColorSchemeData.DEFAULT));
+            }
+        } catch (Exception e) {
+            ErrorEvent.fromThrowable(e).handle();
+        }
+    }
+}

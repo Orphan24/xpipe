@@ -1,0 +1,69 @@
+//task copyRuntimeLibs(type: Copy) {
+//    into project.jar.destinationDirectory
+//    from configurations.runtimeClasspath
+//    exclude "${project.name}.jar"
+//    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+//}
+// Do we need this?
+// jar.dependsOn(copyRuntimeLibs)
+
+tasks.register('createExtOutput', Copy) {
+    mustRunAfter jar
+
+    if (!file("${project.jar.destinationDirectory.get()}_prod").exists()) {
+        copy {
+            from "${project.jar.destinationDirectory.get()}"
+            into "${project.jar.destinationDirectory.get()}_prod"
+        }
+    }
+
+    def shouldObfuscate = rootProject.obfuscate && rootProject.privateExtensions.contains(project.name)
+    var source = shouldObfuscate ? "${project.jar.destinationDirectory.get()}_prod" : "${project.jar.destinationDirectory.get()}"
+
+    from source
+    into "${project.jar.destinationDirectory.get()}_ext"
+}
+
+project.tasks.withType(org.gradle.jvm.tasks.Jar).configureEach {
+    if (it.name != 'jar') {
+        it.destinationDirectory = project.layout.buildDirectory.dir('libs_test')
+    }
+}
+
+apply from: "$rootDir/gradle/gradle_scripts/java.gradle"
+apply from: "$rootDir/gradle/gradle_scripts/javafx.gradle"
+apply from: "$rootDir/gradle/gradle_scripts/lombok.gradle"
+apply from: "$rootDir/gradle/gradle_scripts/local_junit_suite.gradle"
+
+localTest {
+    dependencies {
+        if (project.name != 'base') {
+            implementation project(':base')
+        }
+
+        testImplementation project(":$project.name")
+    }
+}
+
+configurations {
+    compileOnly.extendsFrom(javafx)
+}
+
+dependencies {
+    compileOnly group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: "2.18.2"
+    compileOnly project(':core')
+    compileOnly project(':beacon')
+    compileOnly project(':app')
+    compileOnly 'net.synedra:validatorfx:0.4.2'
+    compileOnly files("$rootDir/gradle/gradle_scripts/atlantafx-base-2.0.2.jar")
+    compileOnly 'commons-io:commons-io:2.18.0'
+    compileOnly group: 'org.kordamp.ikonli', name: 'ikonli-javafx', version: "12.2.0"
+
+    if (project != project(':base')) {
+        compileOnly project(':base')
+    }
+}
+
+// To fix https://github.com/gradlex-org/extra-java-module-info/issues/101#issuecomment-1934761334
+configurations.javaModulesMergeJars.shouldResolveConsistentlyWith(configurations.compileClasspath)
+

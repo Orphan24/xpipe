@@ -1,0 +1,17 @@
+.root { -color-bg-default-transparent: #FFFFFFAF; }
+
+.root .button {
+    -fx-effect: NONE;
+}
+
+.root .table-view {
+    -color-cell-bg-odd: derive(-color-bg-subtle, 35%);
+}
+
+.root:dark * {
+    -color-foreground-base: derive(-color-bg-default, 13%);
+}
+
+.root:light * {
+    -color-foreground-base: derive(-color-bg-default, -3%);
+}
